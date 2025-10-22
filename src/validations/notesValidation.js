@@ -39,11 +39,11 @@ export const createNoteSchema = celebrate({
 // ✅ PATCH /notes/:noteId
 export const updateNoteSchema = celebrate({
   [Segments.PARAMS]: Joi.object({
-    noteId: Joi.string().custom(isValidObjectId, 'ObjectId validation'),
+    noteId: Joi.string().custom(isValidObjectId).required(),
   }),
   [Segments.BODY]: Joi.object({
     title: Joi.string().min(1),
     content: Joi.string().allow(''),
     tag: Joi.string().valid(...TAGS),
-  }),
+  }).min(1),
 });
