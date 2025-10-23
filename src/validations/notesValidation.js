@@ -23,7 +23,7 @@ export const getAllNotesSchema = celebrate({
 // ✅ GET /notes/:noteId, DELETE /notes/:noteId
 export const noteIdSchema = celebrate({
   [Segments.PARAMS]: Joi.object({
-    noteId: Joi.string().custom(isValidObjectId, 'ObjectId validation'),
+    noteId: Joi.string().custom(isValidObjectId).required(),
   }),
 });
 
