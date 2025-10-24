@@ -7,6 +7,8 @@ import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { errors } from 'celebrate';
+import cookieParser from 'cookie-parser';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 
@@ -17,6 +19,8 @@ app.use(cors());
 app.use(express.json());
 app.use(logger);
 
+app.use(cookieParser());
+app.use(authRoutes);
 app.use(notesRoutes);
 app.use(errors());
 app.use(notFoundHandler);
